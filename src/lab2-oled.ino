@@ -68,7 +68,7 @@ void setup()
     delay(100);
 
     Serial.begin(115200);
-    Serial.println("Lab2: OLED sensor (task 1)");
+    Serial.println("Lab2: OLED sensor (task 2a)");
 
     displayInit();
 }
