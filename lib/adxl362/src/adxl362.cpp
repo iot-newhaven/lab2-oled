@@ -37,7 +37,7 @@ void ADXL362::begin(int16_t chipSelectPin) {
 	pinMode(slaveSelectPin, OUTPUT);
 	SPI.begin(SPI_MODE_MASTER);
     //SPI.setBitOrder(MSBFIRST);
-    SPI.setClockSpeed(1,MHZ);
+    SPI.setClockSpeed(400, KHZ);
 
 	SPI.setDataMode(SPI_MODE0);	//CPHA = CPOL = 0    MODE = 0
 	delay(1000);
