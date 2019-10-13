@@ -37,14 +37,14 @@ void ADXL362::begin(int16_t chipSelectPin) {
 	pinMode(slaveSelectPin, OUTPUT);
 	SPI.begin(SPI_MODE_MASTER);
     //SPI.setBitOrder(MSBFIRST);
-    SPI.setClockSpeed(2,MHZ);
+    SPI.setClockSpeed(1,MHZ);
 
 	SPI.setDataMode(SPI_MODE0);	//CPHA = CPOL = 0    MODE = 0
 	delay(1000);
     
 	// soft reset
 	SPIwriteOneRegister(0x1F, 0x52);  // Write to SOFT RESET, "R"
-	delay(10);
+	delay(500);
 #ifdef ADXL362_DEBUG
 	Serial.println("Soft Reset\n");
 #endif
