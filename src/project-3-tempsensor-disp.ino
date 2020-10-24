@@ -1,5 +1,5 @@
 /*
- * Project lab2-sensor-oled
+ * Project project-3-tempsensor-disp
  * Description:
  * Author:
  * Date:
