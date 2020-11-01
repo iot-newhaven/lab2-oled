@@ -28,6 +28,7 @@ public:
    void serialLog(const char *fmt, ...);
 
 private:
+   char serial_out_buffer[255];
 };
 
 #endif
