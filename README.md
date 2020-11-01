@@ -1,10 +1,10 @@
-# lab2-oled
+# project-3-tempsensor-disp
 
-A Particle project named lab2-oled
+A Particle project named project-3-tempsensor-disp
 
 ## Welcome to your project!
 
-Every new Particle project is composed of 3 important elements that you'll see have been created in your project directory for lab2-oled.
+Every new Particle project is composed of 3 important elements that you'll see have been created in your project directory for project-3-tempsensor-disp.
 
 #### ```/src``` folder:  
 This is the source folder that contains the firmware files for your project. It should *not* be renamed. 

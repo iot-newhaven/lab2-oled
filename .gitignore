@@ -1,2 +1,3 @@
 target
-src/lab2-oled.cpp
+src/*.cpp
+/**/*.DS_Store
