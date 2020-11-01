@@ -3,6 +3,9 @@
 #ifndef IOTBOARD_H
 #define IOTBOARD_H
 
+#include <stdint.h>
+#include <stdbool.h>
+
 #include "application.h"
 // Include MicroOLED library
 #include "SparkFunMicroOLED.h" 
@@ -27,8 +30,11 @@ public:
 
    void serialLog(const char *fmt, ...);
 
+   char inputProcessor();
+
 private:
    char serial_out_buffer[255];
+   char input_cmd;
 };
 
 #endif

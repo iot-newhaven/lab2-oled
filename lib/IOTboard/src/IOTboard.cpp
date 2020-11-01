@@ -114,3 +114,16 @@ void IOTboard::serialLog(const char *fmt, ...)
 
     Serial.printlnf(serial_out_buffer);
 }
+
+char IOTboard::inputProcessor() {
+    input_cmd = 0;
+
+    if (Serial.available() > 0)
+    {
+        Serial.readBytes(&input_cmd, 1);
+    }
+
+    return(input_cmd);
+}
+
+
