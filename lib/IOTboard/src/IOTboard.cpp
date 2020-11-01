@@ -46,6 +46,9 @@ void IOTboard::start() {
 }
 
 void IOTboard::printToDisplay(const char* text) {
+    
+    oled.setCursor(0, 0); // Set cursor to top-left
+    oled.clear(PAGE);     // Clear the screen
     oled.print(text);
     oled.display();
 }
