@@ -23,10 +23,16 @@ void setup()
 void loop()
 {
     float temperature;
+    static char temperature_str[8];
 
     temperature = iot_kit.getTempF();
 
     iot_kit.serialLog("Temperature: %f", temperature);
+
+    memset(temperature_str, 0, sizeof(temperature_str));
+    snprintf(temperature_str, sizeof(temperature_str), "%.2f", temperature);
+
+    iot_kit.printToDisplay(temperature_str);
 
     delay(1000);
 }

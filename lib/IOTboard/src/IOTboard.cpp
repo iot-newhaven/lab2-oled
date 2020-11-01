@@ -78,6 +78,8 @@ void IOTboard::printToDisplay(const char* text) {
     oled.print(text);
 
     oled.display();
+
+    delayMicroseconds(100);
 }
 
 float IOTboard::getTempF() {
@@ -96,7 +98,9 @@ float IOTboard::getTempF() {
     // Current consumtion typically <0.5uA.
     temp_sensor.sleep();
 
-    return(temperature);
+    delayMicroseconds(100);
+
+    return (temperature);
 }
 
 void IOTboard::serialLog(const char *fmt, ...)
