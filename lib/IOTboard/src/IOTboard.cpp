@@ -5,8 +5,8 @@ static void heartbeat(void);
 // MicroOLED Object Declaration
 MicroOLED oled(MODE_I2C, D8, 1);
 
-// Create heartbeat timer
-Timer timer(BOARD_HEARTBEAT_MS, heartbeat);
+// Create heartbeat heartbeat_tmr
+Timer heartbeat_tmr(BOARD_HEARTBEAT_MS, heartbeat);
 
 static void heartbeat(void)
 {
@@ -42,7 +42,7 @@ void IOTboard::start() {
     oled.setCursor(0, 0); // Set cursor to top-left
     oled.clear(PAGE);     // Clear the screen
 
-    timer.start();
+    heartbeat_tmr.start();
 }
 
 void IOTboard::printToDisplay(const char* text) {
