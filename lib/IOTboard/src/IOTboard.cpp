@@ -12,9 +12,6 @@ Timer heartbeat_tmr(BOARD_HEARTBEAT_MS, heartbeat);
 // Sensors
 TMP102 temp_sensor;
 
-// Particle Logger API
-SerialLogHandler logHandler;
-
 static void heartbeat(void)
 {
     static bool ledState = true;
@@ -106,7 +103,14 @@ float IOTboard::getTempF() {
 void IOTboard::serialLog(const char *fmt, ...)
 {
     va_list args;
+    
     va_start(args, fmt);
-    Log.info(fmt, args);
+
+    memset(serial_out_buffer, 0, sizeof(serial_out_buffer));
+
+    vsnprintf(serial_out_buffer, sizeof(serial_out_buffer), fmt, args);
+
     va_end(args);
+
+    Serial.printlnf(serial_out_buffer);
 }
