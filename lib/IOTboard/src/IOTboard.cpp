@@ -5,8 +5,15 @@ static void heartbeat(void);
 // MicroOLED Object Declaration
 MicroOLED oled(MODE_I2C, D8, 1);
 
+// Particle soft timer API
 // Create heartbeat heartbeat_tmr
 Timer heartbeat_tmr(BOARD_HEARTBEAT_MS, heartbeat);
+
+// Sensors
+TMP102 temp_sensor;
+
+// Particle Logger API
+SerialLogHandler logHandler;
 
 static void heartbeat(void)
 {
@@ -42,11 +49,57 @@ void IOTboard::start() {
     oled.setCursor(0, 0); // Set cursor to top-left
     oled.clear(PAGE);     // Clear the screen
 
+    delay(100);
+    
+    // Start TM102 Sensor
+    temp_sensor.begin();
+
+    delay(100);
+
+    // set the Conversion Rate (how quickly the sensor gets a new reading)
+    //0-3: 0:0.25Hz, 1:1Hz, 2:4Hz, 3:8Hz
+    temp_sensor.setConversionRate(2);
+
+    //set Extended Mode.
+    //0:12-bit Temperature(-55C to +128C) 1:13-bit Temperature(-55C to +150C)
+    temp_sensor.setExtendedMode(0);
+
+    // start heartbeat timer
     heartbeat_tmr.start();
+
+    // Start serial port
+    Serial.begin(115200); // open serial over USB
 }
 
 void IOTboard::printToDisplay(const char* text) {
     oled.print(text);
+
     oled.display();
 }
 
+float IOTboard::getTempF() {
+    // The core of your code will likely live here.
+    float temperature;
+
+    // Turn sensor on to start temperature measurement.
+    // Current consumtion typically ~10uA.
+    temp_sensor.wakeup();
+
+    // read temperature data
+    temperature = temp_sensor.readTempF();
+    //temperature = sensor.readTempC();
+
+    // Place sensor in sleep mode to save power.
+    // Current consumtion typically <0.5uA.
+    temp_sensor.sleep();
+
+    return(temperature);
+}
+
+void IOTboard::serialLog(const char *fmt, ...)
+{
+    va_list args;
+    va_start(args, fmt);
+    Log.info(fmt, args);
+    va_end(args);
+}

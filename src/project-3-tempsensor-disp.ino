@@ -22,5 +22,11 @@ void setup()
 // loop() runs over and over again, as quickly as it can execute.
 void loop()
 {
-    
+    float temperature;
+
+    temperature = iot_kit.getTempF();
+
+    iot_kit.serialLog("Temperature: %f", temperature);
+
+    delay(1000);
 }
